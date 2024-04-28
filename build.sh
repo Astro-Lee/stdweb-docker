@@ -1,42 +1,70 @@
 #!/bin/bash
-apt-get upgrade && apt-get update
+set -e
 
-wget -O astrometry.net-0.94.tar.gz "https://github.com/dstndstn/astrometry.net/releases/download/0.94/astrometry.net-0.94.tar.gz"
-wget -O sextractor-2.28.0.tar.gz "https://github.com/astromatic/sextractor/archive/refs/tags/2.28.0.tar.gz"
-wget -O scamp-2.10.0.tar.gz "https://github.com/astromatic/scamp/archive/refs/tags/v2.10.0.tar.gz"
-wget -O swarp-2.41.5.tar.gz "https://github.com/astromatic/swarp/archive/refs/tags/2.41.5.tar.gz"
-wget -O psfex-3.24.2.tar.gz "https://github.com/astromatic/psfex/archive/refs/tags/3.24.2.tar.gz"
-wget -O hotpants-5.1.11.tar.gz https://github.com/Astro-Lee/hotpants/releases/download/v5.1.11/hotpants-5.1.11.tar.gz
+# This script is used to build and install the following software:
+sextractor_version=2.28.0
+scamp_version=2.10.0
+swarp_version=2.41.5
+psfex_version=3.24.2
+hotpants_version=5.1.11
+astrometry_net_version=0.94
 
-tar -zxvf astrometry.net-0.94.tar.gz
-tar -zxvf sextractor-2.28.0.tar.gz
-tar -zxvf scamp-2.10.0.tar.gz
-tar -zxvf swarp-2.41.5.tar.gz
-tar -zxvf psfex-3.24.2.tar.gz
-tar -zxvf hotpants-5.1.11.tar.gz
+# Current working directory
+CWD=$(pwd)
 
-#astrometry.net
-sudo apt install -y build-essential curl git file pkg-config swig \
-       libcairo2-dev libnetpbm10-dev netpbm libpng-dev libjpeg-dev \
-       zlib1g-dev libbz2-dev libcfitsio-dev wcslib-dev \
-       python3 python3-pip python3-dev \
-       python3-numpy python3-scipy python3-pil
+# download source code
+wget --no-check-certificate -O "sextractor-${sextractor_version}.tar.gz" "https://github.com/astromatic/sextractor/archive/refs/tags/${sextractor_version}.tar.gz"
+wget --no-check-certificate -O "scamp-${scamp_version}.tar.gz" "https://github.com/astromatic/scamp/archive/refs/tags/v${scamp_version}.tar.gz"
+wget --no-check-certificate -O "swarp-${swarp_version}.tar.gz" "https://github.com/astromatic/swarp/archive/refs/tags/${swarp_version}.tar.gz"
+wget --no-check-certificate -O "psfex-${psfex_version}.tar.gz" "https://github.com/astromatic/psfex/archive/refs/tags/${psfex_version}.tar.gz"
+wget --no-check-certificate -O "hotpants-${hotpants_version}.tar.gz" "https://github.com/Astro-Lee/hotpants/archive/refs/tags/${hotpants_version}.tar.gz"
+wget --no-check-certificate -O "astrometry.net-${astrometry_net_version}.tar.gz" "https://github.com/dstndstn/astrometry.net/archive/refs/tags/${astrometry_net_version}.tar.gz"
 
-cd astrometry.net-0.94
-./configure && make -j$(nproc) && make -j$(nproc) py && make -j$(nproc) extra && sudo make install
+# extract
+tar -zxvf sextractor-${sextractor_version}.tar.gz
+tar -zxvf scamp-${scamp_version}.tar.gz
+tar -zxvf swarp-${swarp_version}.tar.gz
+tar -zxvf psfex-${psfex_version}.tar.gz
+tar -zxvf hotpants-${hotpants_version}.tar.gz
+tar -zxvf astrometry.net-${astrometry_net_version}.tar.gz
 
-#sextractor
-sudo apt install -y libatlas-base-dev libfftw3-dev
-./autogen.sh && ./configure && make -j$(nproc) && sudo make install
+# install sextractor
+cd ${CWD}/sextractor-${sextractor_version} && ./autogen.sh && ./configure && make -j$(nproc) && make install
 
-#scamp
-./autogen.sh && ./configure && make -j$(nproc) && sudo make install
+# install scamp
+cd ${CWD}/scamp-${scamp_version} && ./autogen.sh && ./configure && make -j$(nproc) && make install
 
-#swarp
-./autogen.sh && ./configure && make -j$(nproc) && sudo make install
+# install swarp
+cd ${CWD}/swarp-${swarp_version} && ./autogen.sh && ./configure && make -j$(nproc) && make install
 
-#psfex
-sudo apt install -y libplplot-dev libpthread-stubs0-dev
-./autogen.sh && ./configure LDFLAGS='-pthread' && make -j4 && sudo make install
+# install psfex
+cd ${CWD}/psfex-${psfex_version} && ./autogen.sh && ./configure LDFLAGS='-pthread' && make -j$(nproc) && make install
 
-# hotpants
+# install hotpants
+cd ${CWD}/hotpants-${hotpants_version} && make -j$(nproc) && make install
+
+# # install Astrometry.Net
+eval "$(/opt/miniconda3/bin/conda shell.bash hook)" && \
+cd ${CWD}/astrometry.net-${astrometry_net_version} && ./configure && make -j$(nproc) && make -j$(nproc) py && make -j$(nproc) extra && make install
+
+# https://astrometry.net/doc/build-index.html
+# http://astrometry.net/doc/readme.html#getting-index-files
+# http://data.astrometry.net/
+# download index files to /usr/local/astrometry/data OR
+# make install-indexes
+
+tee -a ~/.bashrc <<'EOF'
+export PATH=${PATH}:/usr/local/astrometry/bin
+EOF
+source ~/.bashrc
+
+# test
+sex --version
+scamp --version
+swarp --version
+psfex --version
+echo Astrometry.Net version $(solve-field --version)
+hotpants
+
+# clean up
+# cd ${CWD} && rm -rf astrometry.net-* sextractor-* scamp-* swarp-* psfex-* hotpants-*

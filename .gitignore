@@ -121,9 +121,9 @@ static/
 db.sqlite3
 dump.rdb
 
-astrometry.net-*
 sextractor-*
 psfex-*
 scamp-*
 swarp-*
 hotpants-*
+astrometry.net-*
