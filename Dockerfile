@@ -84,10 +84,10 @@ RUN apt update && apt upgrade -y && apt install -y git
 RUN git clone --depth=1 https://github.com/karpov-sv/stdweb.git && git clone --depth=1 https://github.com/karpov-sv/stdpipe.git
 
 RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
+&& cd /opt/stdpipe && python3 -m pip install -e . \
 && cd /opt/stdweb && pip install -r requirements.txt \
 && pip install redis watchdog \
-&& python manage.py migrate \
-&& cd /opt/stdpipe && python3 -m pip install -e .
+&& python manage.py migrate 
 
 WORKDIR /opt/stdweb
 
