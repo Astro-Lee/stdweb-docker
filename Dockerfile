@@ -80,8 +80,7 @@ echo 'export PATH=${PATH}:/usr/local/astrometry/bin' >>  ~/.bashrc
 # clean up
 RUN rm -rf astrometry.net-* sextractor-* scamp-* swarp-* psfex-* hotpants-*
 
-# # RUN ./build.sh
-RUN apt update && apt upgrade -y && apt install -y git
+# RUN ./build.sh
 RUN git clone --depth=1 https://github.com/karpov-sv/stdweb.git && git clone --depth=1 https://github.com/karpov-sv/stdpipe.git
 
 RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
