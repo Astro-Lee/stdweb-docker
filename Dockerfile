@@ -88,6 +88,11 @@ RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 && cd /opt/stdpipe && python3 -m pip install -e .
 
 WORKDIR /opt/stdweb
+
+RUN mkdir data tasks \
+&& pip install redis watchdog \
+&& python manage.py migrate
+
 RUN tee .env <<'EOF'
 SECRET_KEY = 'your django secret key goes here'
 
@@ -99,37 +104,6 @@ TASKS_PATH = /opt/stdweb/tasks/
 STDPIPE_HOTPANTS=/usr/local/bin/hotpants
 STDPIPE_SOLVE_FIELD=/usr/local/astrometry/bin/solve-field
 EOF
-
-# RUN apt update && apt upgrade -y && \ 
-# apt-get install -y git wget vim gcc make \ 
-# libmagic-dev sextractor scamp psfex swarp libcfitsio-dev \
-# build-essential curl git file pkg-config swig \
-# libcairo2-dev libnetpbm10-dev netpbm libpng-dev libjpeg-dev \
-# zlib1g-dev libbz2-dev libcfitsio-dev wcslib-dev \
-# python3 python3-pip python3-dev \
-# python3-numpy python3-scipy python3-pil
-
-# RUN cd /opt/stdpipe && ./install_hotpants.sh
-# RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" && conda install -y python==3.10 \
-# && cd /opt/stdweb && pip install -r requirements.txt \
-# && cd /opt/stdpipe && python3 -m pip install -e . \
-# && cd /opt && rm -rf stdpipe
-
-# RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" && cd /opt/stdweb \
-# && pip install redis watchdog \
-# && python manage.py migrate \
-# && mkdir data tasks \
-# && tee .env <<-'EOF'
-# SECRET_KEY = 'your django secret key goes here'
-
-# DEBUG = True
-
-# DATA_PATH = /opt/stdweb/data/
-# TASKS_PATH = /opt/stdweb/tasks/
-
-# STDPIPE_HOTPANTS=/usr/local/bin/hotpants
-# STDPIPE_SOLVE_FIELD=/usr/local/astrometry/bin/solve-field
-# EOF
 
 EXPOSE 8000
 
