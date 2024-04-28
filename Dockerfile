@@ -15,7 +15,8 @@ RUN apt update \
 && apt install --no-install-recommends -y git wget vim gcc make \
 autoconf automake libtool \
 libcfitsio-dev libfftw3-dev libatlas-base-dev \
-libjpeg-dev wcslib-dev libcairo2-dev swig libnetpbm10-dev netpbm libpng-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev file pkg-config
+libjpeg-dev wcslib-dev libcairo2-dev swig libnetpbm10-dev netpbm libpng-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev file pkg-config \
+&& apt clean
 
 RUN wget --no-check-certificate "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$(uname -m).sh" \
 && sh Miniconda3-latest-Linux-$(uname -m).sh -bfu -p /opt/miniconda3 \

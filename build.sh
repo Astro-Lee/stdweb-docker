@@ -63,8 +63,7 @@ sex --version
 scamp --version
 swarp --version
 psfex --version
-ls -alh /usr/local/astrometry/bin/
-#echo Astrometry.Net version $(/usr/local/astrometry/bin/solve-field --version)
+echo Astrometry.Net version $(solve-field --version)
 hotpants
 
 # clean up
