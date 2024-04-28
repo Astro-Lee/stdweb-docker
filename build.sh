@@ -43,7 +43,7 @@ cd ${CWD}/psfex-${psfex_version} && ./autogen.sh && ./configure LDFLAGS='-pthrea
 # install hotpants
 cd ${CWD}/hotpants-${hotpants_version} && make -j$(nproc) && make install
 
-# # install Astrometry.Net
+# install Astrometry.Net
 eval "$(/opt/miniconda3/bin/conda shell.bash hook)" && \
 cd ${CWD}/astrometry.net-${astrometry_net_version} && ./configure && make -j$(nproc) && make -j$(nproc) py && make -j$(nproc) extra && make install
 
@@ -63,7 +63,8 @@ sex --version
 scamp --version
 swarp --version
 psfex --version
-echo Astrometry.Net version $(solve-field --version)
+ls -alh /usr/local/astrometry/bin/
+#echo Astrometry.Net version $(/usr/local/astrometry/bin/solve-field --version)
 hotpants
 
 # clean up
