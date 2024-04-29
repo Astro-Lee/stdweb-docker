@@ -14,9 +14,9 @@ services:
     ports:
       - "8234:8000"
     volumes:
-      - data:/opt/stdweb/data/
-      - tasks:/opt/stdweb/tasks/
-      - index-data:/usr/local/astrometry/data
+      - ./data:/opt/stdweb/data/
+      - ./tasks:/opt/stdweb/tasks/
+      - ./index-data:/usr/local/astrometry/data
     command: >
       /bin/bash -c "watchmedo auto-restart -d stdweb -p '*.py' --ignore-patterns="*/.*" -- python3 -m celery -- -A stdweb worker --loglevel=info > watchmedo.log 2>&1 &"
       /bin/bash -c "python manage.py runserver 0.0.0.0:8000"
