@@ -35,6 +35,5 @@ CSRF_TRUSTED_ORIGINS = [ 'https://example.domain.com', ] # reverse proxy
 
 ## Step 3
 ```bash
-./run_celery.sh &
-python manage.py runserver 0.0.0.0:8000
+./start.sh
 ```
