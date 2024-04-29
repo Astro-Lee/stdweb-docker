@@ -17,8 +17,8 @@ services:
       - ./tasks:/opt/stdweb/tasks/
       - ./index-data:/usr/local/astrometry/data
     command: >
-      /usr/bin env bash watchmedo auto-restart -d stdweb -p '*.py' --ignore-patterns='*/.*' -- python3 -m celery -- -A stdweb worker --loglevel=info > watchmedo.log 2>&1 &
-      /usr/bin env bash python manage.py runserver 0.0.0.0:8000
+      eval "$(/opt/miniconda3/bin/conda shell.bash hook)" && watchmedo auto-restart -d stdweb -p '*.py' --ignore-patterns='*/.*' -- python3 -m celery -- -A stdweb worker --loglevel=info > watchmedo.log 2>&1 &
+      eval "$(/opt/miniconda3/bin/conda shell.bash hook)" && python manage.py runserver 0.0.0.0:8000
       
 networks:
   stdweb-net:
