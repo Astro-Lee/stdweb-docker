@@ -101,6 +101,6 @@ RUN mkdir data tasks \
 
 EXPOSE 8000
 
-CMD ./run_celery.sh
+CMD /usr/bin/env bash
 # ./run_celery.sh &
 # python manage.py runserver 0.0.0.0:8000
