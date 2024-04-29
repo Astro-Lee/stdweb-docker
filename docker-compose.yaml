@@ -16,6 +16,8 @@ services:
       - ./data:/opt/stdweb/data/
       - ./tasks:/opt/stdweb/tasks/
       - ./index-data:/usr/local/astrometry/data
+    command: >
+      /bin/bash
       
 networks:
   stdweb-net:
