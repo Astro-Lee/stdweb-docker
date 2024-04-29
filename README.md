@@ -2,6 +2,10 @@
 
 STDWeb - web version of [STDPipe](https://github.com/karpov-sv/stdpipe) (Docker)
 
+## Step 0
+
+- download index files from http://data.astrometry.net/
+
 ## Step 1
 ```python
 python3 manage.py shell
