@@ -27,7 +27,7 @@ RUN wget --no-check-certificate "https://repo.anaconda.com/miniconda/Miniconda3-
 
 WORKDIR /opt
 
-COPY build.sh /opt/build.sh
+#COPY build.sh /opt/build.sh
 ARG sextractor_version=2.28.0
 ARG scamp_version=2.10.0
 ARG swarp_version=2.41.5
