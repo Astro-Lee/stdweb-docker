@@ -13,4 +13,4 @@ services:
       - ./tasks:/opt/stdweb/tasks/
       - ./index-data:/usr/local/astrometry/data
     command: >
-      /bin/bash eval "$(/opt/miniconda3/bin/conda shell.bash hook)" && python
+      /usr/bin/env bash
