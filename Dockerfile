@@ -93,7 +93,7 @@ WORKDIR /opt/stdweb
 ADD start.sh /opt/stdweb/start.sh
 
 RUN mkdir data tasks \
-&& echo "SECRET_KEY = 'your django secret key goes here'" > .env \
+&& echo "SECRET_KEY = '`/opt/miniconda3/bin/python manage.py shell <<< "from django.core.management import utils; print(utils.get_random_secret_key())"`'" > .env \
 && echo "DEBUG = True" >> .env \
 && echo "DATA_PATH = /opt/stdweb/data/" >> .env \
 && echo "TASKS_PATH = /opt/stdweb/tasks/" >> .env \
