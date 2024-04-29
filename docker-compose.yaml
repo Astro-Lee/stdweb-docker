@@ -3,9 +3,13 @@ version: '3'
 services:
   redis:
     image: redis:latest
+    networks:
+      - stdweb-net
 
   stdweb:
-    image: stdweb:latest
+    image: .
+    networks:
+      - stdweb-net
     ports:
       - "8234:8000"
     volumes:
@@ -16,3 +20,7 @@ services:
       /bin/bash -c "watchmedo auto-restart -d stdweb -p '*.py' --ignore-patterns="*/.*" -- python3 -m celery -- -A stdweb worker --loglevel=info > watchmedo.log 2>&1 &"
 
       /bin/bash -c "python manage.py runserver 0.0.0.0:8000"
+      
+networks:
+  stdweb-net:
+    driver: bridge
