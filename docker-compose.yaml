@@ -2,6 +2,7 @@ version: '3'
 
 services:
   redis:
+    container_name: redis
     image: redis:latest
     networks:
       - stdweb-net
@@ -18,7 +19,6 @@ services:
       - index-data:/usr/local/astrometry/data
     command: >
       /bin/bash -c "watchmedo auto-restart -d stdweb -p '*.py' --ignore-patterns="*/.*" -- python3 -m celery -- -A stdweb worker --loglevel=info > watchmedo.log 2>&1 &"
-
       /bin/bash -c "python manage.py runserver 0.0.0.0:8000"
       
 networks:
