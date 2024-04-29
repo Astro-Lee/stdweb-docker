@@ -99,7 +99,9 @@ RUN mkdir data tasks \
 && echo "TASKS_PATH = /opt/stdweb/tasks/" >> .env \
 && echo "STDPIPE_HOTPANTS=/usr/local/bin/hotpants" >> .env \
 && echo "STDPIPE_SOLVE_FIELD=/usr/local/astrometry/bin/solve-field" >> .env \
-&& sed -i "/ALLOWED_HOSTS/a\# CSRF_TRUSTED_ORIGINS = [ 'https://example.domain.com', ]" stdweb/settings.py
+&& sed -i "/ALLOWED_HOSTS/a\# CSRF_TRUSTED_ORIGINS = [ 'https://example.domain.com', ]" stdweb/settings.py \
+&& sed -i "s@redis:\/\/localhost\/@redis:\/\/redis\/@g" stdweb/settings.py \
+$$ sed -i "s@redis:\/\/127.0.0.1@redis:\/\/redis@g" stdweb/settings.py
 
 EXPOSE 8000
 
