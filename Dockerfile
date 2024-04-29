@@ -90,6 +90,7 @@ RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 && python manage.py migrate 
 
 WORKDIR /opt/stdweb
+ADD start.sh /opt/stdweb/start.sh
 
 RUN mkdir data tasks \
 && echo "SECRET_KEY = 'your django secret key goes here'" > .env \
@@ -103,5 +104,3 @@ RUN mkdir data tasks \
 EXPOSE 8000
 
 CMD /usr/bin/env bash
-# ./run_celery.sh &
-# python manage.py runserver 0.0.0.0:8000

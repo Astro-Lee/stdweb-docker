@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.8'
 
 services:
   redis:
@@ -16,6 +16,4 @@ services:
       - ./data:/opt/stdweb/data/
       - ./tasks:/opt/stdweb/tasks/
       - ./index-data:/usr/local/astrometry/data/
-    command: >
-      /usr/bin/env /opt/miniconda3/bin/watchmedo auto-restart -d stdweb -p '*.py' --ignore-patterns='*/.*' -- /opt/miniconda3/bin/python -m celery --broker=redis://redis:6379/ -A stdweb worker --loglevel=info > watchmedo.log 2>&1 &
-      /usr/bin/env /opt/miniconda3/bin/python manage.py runserver 0.0.0.0:8000
+    command: ./start.sh
