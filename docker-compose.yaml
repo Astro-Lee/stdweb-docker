@@ -7,6 +7,7 @@ services:
     restart: always
 
   stdweb:
+    container_name: stdweb
     build: .
     restart: always
     ports:
