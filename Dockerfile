@@ -91,17 +91,12 @@ RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 WORKDIR /opt/stdweb
 
 RUN mkdir data tasks \
-&& tee .env <<'EOF'
-SECRET_KEY = 'your django secret key goes here'
-
-DEBUG = True
-
-DATA_PATH = /opt/stdweb/data/
-TASKS_PATH = /opt/stdweb/tasks/
-
-STDPIPE_HOTPANTS=/usr/local/bin/hotpants
-STDPIPE_SOLVE_FIELD=/usr/local/astrometry/bin/solve-field
-EOF
+&& echo "SECRET_KEY = 'your django secret key goes here'" > .env \
+&& echo "DEBUG = True" >> .env \
+&& echo "DATA_PATH = /opt/stdweb/data/" >> .env \
+&& echo "TASKS_PATH = /opt/stdweb/tasks/" >> .env \
+&& echo "STDPIPE_HOTPANTS=/usr/local/bin/hotpants" >> .env \
+&& echo "STDPIPE_SOLVE_FIELD=/usr/local/astrometry/bin/solve-field" >> .env
 
 EXPOSE 8000
 
