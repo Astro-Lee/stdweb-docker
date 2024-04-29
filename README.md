@@ -12,7 +12,7 @@ STDWeb - web version of [STDPipe](https://github.com/karpov-sv/stdpipe) (Docker)
 ```python
 python3 manage.py shell
 from django.core.management import utils
-utils.get random secret key() # edit .env
+utils.get_random_secret_key() # edit .env file
 ```
 
 `.env` file
