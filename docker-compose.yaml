@@ -11,7 +11,7 @@ services:
     networks:
       - stdweb-net
     ports:
-      - "8234:8000"
+      - "8123:8000"
     volumes:
       - ./data:/opt/stdweb/data/
       - ./tasks:/opt/stdweb/tasks/
