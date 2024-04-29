@@ -3,13 +3,9 @@ version: '3'
 services:
   redis:
     image: redis:latest
-    networks:
-      - stdweb-net
 
   stdweb:
     build: .
-    networks:
-      - stdweb-net
     ports:
       - "8123:8000"
     volumes:
@@ -18,7 +14,3 @@ services:
       - ./index-data:/usr/local/astrometry/data
     command: >
       /bin/bash
-      
-networks:
-  stdweb-net:
-    driver: bridge
