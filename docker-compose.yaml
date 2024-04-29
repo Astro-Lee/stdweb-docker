@@ -13,4 +13,4 @@ services:
       - ./tasks:/opt/stdweb/tasks/
       - ./index-data:/usr/local/astrometry/data
     command: >
-      python
+      /bin/bash python
