@@ -4,11 +4,12 @@ STDWeb - web version of [STDPipe](https://github.com/karpov-sv/stdpipe) (Docker)
 
 ## Step 0
 
-- download index files from http://data.astrometry.net/
+- Download index files from http://data.astrometry.net/
+- Map save path to container, see 'docker-compose.yaml'
+- 'docker-compose up -d'
 
 ## Step 1
 ```python
-# in container
 python3 manage.py shell
 from django.core.management import utils
 utils.get random secret key() # edit .env
@@ -34,7 +35,6 @@ CSRF_TRUSTED_ORIGINS = [ 'https://example.domain.com', ] # reverse proxy
 
 ## Step 3
 ```bash
-# in container
 ./run_celery.sh &
 python manage.py runserver 0.0.0.0:8000
 ```
