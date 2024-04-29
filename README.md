@@ -7,11 +7,19 @@ STDWeb - web version of [STDPipe](https://github.com/karpov-sv/stdpipe) (Docker)
 - Download index files from http://data.astrometry.net/
 - Map saved path to container, see `docker-compose.yaml`
 - `docker-compose up -d`
+- `docker exec -it stdweb bash`
 
 ## Step 1
+### create a superuser
+```python
+python manage.py createsuperuser
+```
+
+## Step 2
+### generate a django secret key
 ```python
 python3 manage.py shell <<< "from django.core.management import utils; print(utils.get_random_secret_key())"
-# edit .env file
+# add to .env file
 ```
 
 `.env` file
@@ -26,13 +34,10 @@ TASKS_PATH = /opt/stdweb/tasks/
 STDPIPE_HOTPANTS=/usr/local/bin/hotpants
 STDPIPE_SOLVE_FIELD=/usr/local/astrometry/bin/solve-field
 ```
-## Step 2
-```bash
-#edit stdweb/settings.py
-CSRF_TRUSTED_ORIGINS = [ 'https://example.domain.com', ] # reverse proxy 
-```
 
 ## Step 3
+### reverse proxy 
 ```bash
-./start.sh
+#edit stdweb/settings.py
+CSRF_TRUSTED_ORIGINS = [ 'https://example.domain.com', ]
 ```
