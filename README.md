@@ -6,7 +6,7 @@ STDWeb - web version of [STDPipe](https://github.com/karpov-sv/stdpipe) (Docker)
 
 - Download index files from http://data.astrometry.net/
 - Map save path to container, see 'docker-compose.yaml'
-- 'docker-compose up -d'
+- `docker-compose up -d`
 
 ## Step 1
 ```python
