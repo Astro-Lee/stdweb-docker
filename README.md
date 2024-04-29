@@ -11,7 +11,7 @@ STDWeb - web version of [STDPipe](https://github.com/karpov-sv/stdpipe) (Docker)
 ## Step 1
 ```python
 python3 manage.py shell <<< "from django.core.management import utils; print(utils.get_random_secret_key())"
- # edit .env file
+# edit .env file
 ```
 
 `.env` file
