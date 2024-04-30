@@ -2,11 +2,6 @@ FROM ubuntu:latest
 
 MAINTAINER Rui-Zhi Li <liruizhi@ynao.ac.cn>
 
-#设置编码
-ENV LANG C.UTF-8
-# 设置默认时区
-ENV TZ=Asia/Shanghai
-
 ENV GIT_SSL_NO_VERIFY=1
 
 # dependencies
