@@ -28,7 +28,7 @@ ARG scamp_version=2.10.0
 ARG swarp_version=2.41.5
 ARG psfex_version=3.24.2
 ARG hotpants_version=5.1.11
-ARG astrometry_net_version=0.94
+ARG astrometry_net_version=0.95
 
 # download source code
 RUN wget --no-check-certificate -O "sextractor-${sextractor_version}.tar.gz" "https://github.com/astromatic/sextractor/archive/refs/tags/${sextractor_version}.tar.gz"
