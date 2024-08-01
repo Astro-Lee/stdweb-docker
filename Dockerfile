@@ -88,6 +88,9 @@ RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 && pip install watchdog \
 && python manage.py migrate
 
+RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
+&& mkdir notebooks
+
 WORKDIR /opt/stdweb
 ADD start.sh /opt/stdweb/start.sh
 
