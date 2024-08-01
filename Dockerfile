@@ -2,6 +2,10 @@ FROM ubuntu:latest
 
 MAINTAINER Rui-Zhi Li <liruizhi@ynao.ac.cn>
 
+# Fix for tzdata which is pulled by some dependencies
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
+
 ENV GIT_SSL_NO_VERIFY=1
 
 # dependencies
@@ -18,7 +22,7 @@ RUN wget --no-check-certificate "https://repo.anaconda.com/miniconda/Miniconda3-
 && rm Miniconda3-latest-Linux-$(uname -m).sh \
 && eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 && conda init \
-&& conda install -y python==3.10 setuptools numpy
+&& conda install -y python==3.10 setuptools jupyter numpy
 
 WORKDIR /opt
 
