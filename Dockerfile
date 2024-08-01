@@ -86,10 +86,7 @@ RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 && cd /opt/stdpipe && python -m pip install -e . \
 && cd /opt/stdweb && pip install -r requirements.txt \
 && pip install watchdog \
-&& python manage.py migrate 
-
-RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
-&& mkdir notebooks
+&& python manage.py migrate
 
 WORKDIR /opt/stdweb
 ADD start.sh /opt/stdweb/start.sh
