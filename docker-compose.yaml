@@ -12,6 +12,7 @@ services:
     restart: always
     ports:
       - "8123:8000"
+      - "8124:8888"
     volumes:
       - ./data:/opt/stdweb/data/
       - ./tasks:/opt/stdweb/tasks/
