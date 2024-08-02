@@ -17,4 +17,5 @@ services:
       - ./data:/opt/stdweb/data/
       - ./tasks:/opt/stdweb/tasks/
       - ./index-data:/usr/local/astrometry/data/
+      - ./notebooks:/opt/notebooks
     command: ./start.sh
