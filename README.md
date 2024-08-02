@@ -35,6 +35,5 @@ CSRF_TRUSTED_ORIGINS = [ 'https://example.domain.com', ]
 ## update
 ```bash
 cd /opt/stdpipe && git pull && python -m pip install -e .
-mv /opt/stdweb/stdweb/settings.py /opt/stdweb/stdweb/settings.py.bak
 cd /opt/stdweb && git pull && pip install -r requirements.txt
 ```
