@@ -33,7 +33,10 @@ CSRF_TRUSTED_ORIGINS = [ 'https://example.domain.com', ]
 ## update
 ```bash
 cd /opt/stdpipe && git pull && python -m pip install -e .
-cd /opt/stdweb && git pull && pip install -r requirements.txt
+cd /opt/stdweb && git pull && pip install -r requirements.txt \
+&& sed -i "/ALLOWED_HOSTS/a\# CSRF_TRUSTED_ORIGINS = [ 'https://example.domain.com', ]" stdweb/settings.py \
+&& sed -i "s@redis:\/\/localhost\/@redis:\/\/redis\/@g" stdweb/settings.py \
+&& sed -i "s@redis:\/\/127.0.0.1@redis:\/\/redis@g" stdweb/settings.py
 ```
 ---
 ## jupyter-lab
