@@ -38,4 +38,4 @@ cd /opt/stdweb && git pull && pip install -r requirements.txt
 ---
 ## jupyter-lab
 ```bash
-nohup jupyter-lab --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root
+nohup jupyter-lab --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root &
