@@ -18,4 +18,4 @@ services:
       - ./tasks:/opt/stdweb/tasks/
       - ./index-data:/usr/local/astrometry/data/
       - ./notebooks:/opt/notebooks
-    command: /bin/sh -c "./start.sh && jupyter-notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root"
+    command: /bin/sh -c "./start.sh"
