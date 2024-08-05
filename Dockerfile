@@ -106,5 +106,6 @@ RUN mkdir data tasks \
 && sed -i "s@redis:\/\/127.0.0.1@redis:\/\/redis@g" stdweb/settings.py
 
 EXPOSE 8000
+EXPOSE 8888
 
 CMD /usr/bin/env bash
