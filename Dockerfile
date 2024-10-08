@@ -87,7 +87,7 @@ RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 && python manage.py migrate
 
 RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
-&& git clone --depth=1 https://github.com/karpov-sv/stdpipe.git
+&& git clone --depth=1 https://github.com/karpov-sv/stdpipe.git \
 && cd /opt/stdpipe && python -m pip install -e .
 
 RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
