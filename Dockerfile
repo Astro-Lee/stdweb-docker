@@ -80,13 +80,15 @@ echo 'export PATH=${PATH}:/usr/local/astrometry/bin' >>  ~/.bashrc
 RUN rm -rf astrometry.net-* sextractor-* scamp-* swarp-* psfex-* hotpants-*
 
 # RUN ./build.sh
-RUN git clone --depth=1 https://github.com/karpov-sv/stdweb.git && git clone --depth=1 https://github.com/karpov-sv/stdpipe.git
-
-RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
-&& cd /opt/stdpipe && python -m pip install -e . \
+RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \ 
+&& git clone --depth=1 https://github.com/karpov-sv/stdweb.git \
 && cd /opt/stdweb && pip install -r requirements.txt \
 && pip install watchdog \
 && python manage.py migrate
+
+RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
+&& git clone --depth=1 https://github.com/karpov-sv/stdpipe.git
+&& cd /opt/stdpipe && python -m pip install -e .
 
 RUN eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 && mkdir notebooks
