@@ -22,7 +22,7 @@ RUN wget --no-check-certificate "https://repo.anaconda.com/miniconda/Miniconda3-
 && rm Miniconda3-latest-Linux-$(uname -m).sh \
 && eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 && conda init \
-&& conda install -y python==3.10 numpy==2.1.0 setuptools jupyter
+&& conda install -y python==3.10 numpy setuptools jupyter
 
 WORKDIR /opt
 
