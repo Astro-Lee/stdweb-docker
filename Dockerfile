@@ -19,9 +19,9 @@ RUN apt update && apt upgrade -y && \
     apt clean && rm -rf /var/lib/apt/lists/*
 
 # ====== 安装 Mambaforge (conda-forge) ======
-RUN wget --no-check-certificate "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-$(uname -m).sh" && \
-    bash Mambaforge-Linux-$(uname -m).sh -b -p /opt/conda3 && \
-    rm Mambaforge-Linux-$(uname -m).sh && \
+RUN wget --no-check-certificate -O Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-$(uname -m).sh" && \
+    bash Miniforge3.sh -b -p /opt/conda3 && \
+    rm Miniforge3.sh && \
     conda config --set always_yes yes --set changeps1 no && \
     conda update -n base -c defaults conda && \
     conda install -c conda-forge python=3.10 numpy=1.25.2 setuptools jupyter pip
