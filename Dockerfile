@@ -18,13 +18,12 @@ libjpeg-dev wcslib-dev libcairo2-dev swig libnetpbm10-dev netpbm libpng-dev zlib
 && apt clean
 
 RUN wget --no-check-certificate "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-$(uname -m).sh" \
-&& sh Mambaforge-Linux-$(uname -m).sh -bfu -p /opt/conda3 \
+&& bash Mambaforge-Linux-$(uname -m).sh -b -p /opt/conda3 \
 && rm Mambaforge-Linux-$(uname -m).sh \
-&& eval "$(/opt/conda3/bin/conda shell.bash hook)" \
-&& conda init \
-&& conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main \
-&& conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r \
-&& conda install -y python==3.10 numpy==1.25.2 setuptools jupyter
+&& /opt/conda3/bin/conda init bash \
+&& /opt/conda3/bin/conda config --set always_yes yes --set changeps1 no \
+&& /opt/conda3/bin/conda update -n base -c defaults conda \
+&& /opt/conda3/bin/conda install python=3.10 numpy=1.25.2 setuptools jupyter
 
 WORKDIR /opt
 
