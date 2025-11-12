@@ -17,9 +17,6 @@ libcfitsio-dev libfftw3-dev libatlas-base-dev \
 libjpeg-dev wcslib-dev libcairo2-dev swig libnetpbm10-dev netpbm libpng-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev file pkg-config python3-astrometry \
 && apt clean
 
-wget 
-bash  -b -p /opt/conda
-
 RUN wget --no-check-certificate "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-$(uname -m).sh" \
 && sh Mambaforge-Linux-$(uname -m).sh -bfu -p /opt/conda3 \
 && rm Mambaforge-Linux-$(uname -m).sh \
