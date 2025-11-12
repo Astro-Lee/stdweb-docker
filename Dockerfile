@@ -27,12 +27,12 @@ RUN wget --no-check-certificate "https://repo.anaconda.com/miniconda/Miniconda3-
 WORKDIR /opt
 
 #COPY build.sh /opt/build.sh
-ARG sextractor_version=2.28.0
-ARG scamp_version=2.10.0
+ARG sextractor_version=2.28.2
+ARG scamp_version=2.14.0
 ARG swarp_version=2.41.5
 ARG psfex_version=3.24.2
 ARG hotpants_version=5.1.11
-ARG astrometry_net_version=0.96
+ARG astrometry_net_version=0.97
 
 # download source code
 RUN wget --no-check-certificate -O "sextractor-${sextractor_version}.tar.gz" "https://github.com/astromatic/sextractor/archive/refs/tags/${sextractor_version}.tar.gz"
