@@ -27,6 +27,7 @@ RUN wget --no-check-certificate -O Miniforge3.sh "https://github.com/conda-forge
     conda install -c conda-forge python=3.10 numpy=1.25.2 setuptools jupyter pip
 
 WORKDIR /opt
+RUN mkdir -p /opt/notebooks
 
 # ====== 版本定义 ======
 ARG sextractor_version=2.28.2
@@ -64,7 +65,7 @@ RUN git clone --depth=1 https://github.com/karpov-sv/stdpipe.git && \
 # ====== 设置环境与配置 ======
 WORKDIR /opt/stdweb
 
-RUN mkdir -p data tasks notebooks && \
+RUN mkdir -p /opt/stdweb/data /opt/stdweb/tasks && \
     echo "SECRET_KEY = 'your django secret key goes here'" > .env && \
     echo "DEBUG = True" >> .env && \
     echo "DATA_PATH = /opt/stdweb/data/" >> .env && \
