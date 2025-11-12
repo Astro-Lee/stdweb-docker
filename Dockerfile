@@ -24,7 +24,7 @@ RUN wget --no-check-certificate -O Miniforge3.sh "https://github.com/conda-forge
     rm Miniforge3.sh && \
     conda config --set always_yes yes --set changeps1 no && \
     conda update -n base -c defaults conda && \
-    conda install -c conda-forge python=3.10 numpy=1.25.2 setuptools jupyter pip
+    conda install -c conda-forge python=3.10 numpy=1.25.2 setuptools jupyter pip tabulate
 
 WORKDIR /opt
 RUN mkdir -p /opt/notebooks
