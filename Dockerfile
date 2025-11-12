@@ -22,6 +22,8 @@ RUN wget --no-check-certificate "https://repo.anaconda.com/miniconda/Miniconda3-
 && rm Miniconda3-latest-Linux-$(uname -m).sh \
 && eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
 && conda init \
+&& conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main \
+&& conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r \
 && conda install -y python==3.10 numpy==1.25.2 setuptools jupyter
 
 WORKDIR /opt
