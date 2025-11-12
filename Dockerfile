@@ -17,10 +17,13 @@ libcfitsio-dev libfftw3-dev libatlas-base-dev \
 libjpeg-dev wcslib-dev libcairo2-dev swig libnetpbm10-dev netpbm libpng-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev file pkg-config python3-astrometry \
 && apt clean
 
-RUN wget --no-check-certificate "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$(uname -m).sh" \
-&& sh Miniconda3-latest-Linux-$(uname -m).sh -bfu -p /opt/miniconda3 \
-&& rm Miniconda3-latest-Linux-$(uname -m).sh \
-&& eval "$(/opt/miniconda3/bin/conda shell.bash hook)" \
+wget 
+bash  -b -p /opt/conda
+
+RUN wget --no-check-certificate "https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-$(uname -m).sh" \
+&& sh Mambaforge-Linux-$(uname -m).sh -bfu -p /opt/conda3 \
+&& rm Mambaforge-Linux-$(uname -m).sh \
+&& eval "$(/opt/conda3/bin/conda shell.bash hook)" \
 && conda init \
 && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main \
 && conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r \
