@@ -19,7 +19,8 @@ python manage.py createsuperuser
 ## Step 2
 ### generate a django secret key
 ```bash
-key=$(python -c "from django.core.management import utils; print(utils.get_random_secret_key())") && sed -i "s/^SECRET_KEY.*/SECRET_KEY = '$key'/" .env && cat .env 
+#edit .env
+python -c "from django.core.management import utils; print(utils.get_random_secret_key())"
 ```
 
 ## Step 3
