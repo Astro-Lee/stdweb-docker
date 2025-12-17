@@ -4,7 +4,7 @@ STDWeb - web version of [STDPipe](https://github.com/karpov-sv/stdpipe) (Docker)
 
 ## Step 0
 - `git clone https://github.com/Astro-Lee/stdweb-docker.git`
-- Download suitable index files from [data.astrometry.net](http://data.astrometry.net/), as introduced in [astrometry](https://github.com/neuromorphicsystems/astrometry) (also refer to `download_index.sh`). Map the saved path to the container by referring to `docker-compose.yaml`.
+- Download suitable index files from [data.astrometry.net](http://data.astrometry.net/), as introduced in [astrometry](https://github.com/neuromorphicsystems/astrometry) (also refer to [download_index.sh](https://github.com/Astro-Lee/stdweb-docker/blob/master/download_index.sh)). Map the saved path to the container by referring to [docker-compose.yaml](https://github.com/Astro-Lee/stdweb-docker/blob/master/docker-compose.yaml).
 - `docker compose up -d`
 - `docker exec -it stdweb bash`
 
