@@ -3,10 +3,16 @@
 STDWeb - web version of [STDPipe](https://github.com/karpov-sv/stdpipe) (Docker)
 
 ## Step 0
-- `git clone https://github.com/Astro-Lee/stdweb-docker.git`
-- Download suitable index files from [data.astrometry.net](http://data.astrometry.net/), as introduced in [astrometry](https://github.com/neuromorphicsystems/astrometry) (also refer to [download_index.sh](https://github.com/Astro-Lee/stdweb-docker/blob/master/download_index.sh)). Map the saved path to the container by referring to [docker-compose.yaml](https://github.com/Astro-Lee/stdweb-docker/blob/master/docker-compose.yaml).
-- `docker compose up -d`
-- `docker exec -it stdweb bash`
+```python
+git clone --depth=1 https://github.com/Astro-Lee/stdweb-docker.git
+```
+Download suitable index files from [data.astrometry.net](http://data.astrometry.net/), as introduced in [astrometry](https://github.com/neuromorphicsystems/astrometry) (also refer to [download_index.sh](https://github.com/Astro-Lee/stdweb-docker/blob/master/download_index.sh)). Map the saved path to the container by referring to [docker-compose.yaml](https://github.com/Astro-Lee/stdweb-docker/blob/master/docker-compose.yaml).
+```python
+docker compose up -d
+```
+```python
+docker exec -it stdweb bash
+```
 
 ⚠️: All the following operations are carried out in the container
 
@@ -40,6 +46,3 @@ cd /opt/stdweb && git pull && pip install -r requirements.txt \
 && sed -i "s@redis:\/\/127.0.0.1@redis:\/\/redis@g" stdweb/settings.py
 ```
 ---
-## jupyter-lab
-```bash
-nohup jupyter-lab --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser --allow-root &
