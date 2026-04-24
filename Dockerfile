@@ -9,14 +9,19 @@ ENV GIT_SSL_NO_VERIFY=1
 ENV PATH=/opt/conda3/bin:$PATH
 
 # ====== 系统依赖 ======
-RUN apt update && apt upgrade -y && \
-    apt install --no-install-recommends -y \
+RUN apt-get update && apt-get install -y locales && \
+    rm -rf /var/lib/apt/lists/* && \
+    localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
+
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y \
         git wget vim gcc make autoconf automake libtool \
         libcfitsio-dev libfftw3-dev libatlas-base-dev \
         libjpeg-dev wcslib-dev libcairo2-dev swig libnetpbm10-dev netpbm \
         libpng-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev file pkg-config \
         python3-astrometry ca-certificates && \
-    apt clean && rm -rf /var/lib/apt/lists/*
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # ====== 安装 Mambaforge (conda-forge) ======
 RUN wget --no-check-certificate -O Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-$(uname -m).sh" && \
