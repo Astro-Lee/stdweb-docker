@@ -4,6 +4,7 @@ set -e
 # https://astrometry.net/doc/build-index.html
 # http://astrometry.net/doc/readme.html#getting-index-files
 # http://data.astrometry.net/
+# https://github.com/neuromorphicsystems/astrometry#choosing-series
 # download index files to /usr/local/astrometry/data OR
 
 # index-5201-*
