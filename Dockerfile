@@ -19,7 +19,7 @@ RUN apt-get update && \
         git wget vim gcc make autoconf automake libtool \
         libcfitsio-dev libfftw3-dev libatlas-base-dev \
         libjpeg-dev wcslib-dev libcairo2-dev swig libnetpbm10-dev netpbm \
-        libpng-dev zlib1g-dev libbz2-dev libcurl4-gnutls-dev file pkg-config \
+        libpng-dev zlib1g-dev libbz2-dev libcurl4 libcurl4-gnutls-dev  file pkg-config \
         python3-astrometry ca-certificates && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
