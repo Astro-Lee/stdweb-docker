@@ -31,11 +31,11 @@ RUN mkdir -p /opt/notebooks
 
 # ====== 版本定义 ======
 ARG sextractor_version=2.28.2
-ARG scamp_version=2.14.0
+ARG scamp_version=2.15.0
 ARG swarp_version=2.41.5
 ARG psfex_version=3.24.2
 ARG hotpants_version=5.1.11
-ARG astrometry_net_version=0.97
+ARG astrometry_net_version=0.98
 
 # ====== 下载源码并安装 ======
 RUN set -eux; \
