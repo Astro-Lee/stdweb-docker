@@ -5,7 +5,7 @@ LABEL maintainer="Rui-Zhi Li <liruizhi@ynao.ac.cn>"
 # ====== 基本环境配置 ======
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Asia/Shanghai
-ENV GIT_SSL_NO_VERIFY=1
+#ENV GIT_SSL_NO_VERIFY=1
 ENV PATH=/opt/conda3/bin:$PATH
 
 # ====== 系统依赖 ======
